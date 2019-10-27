@@ -241,71 +241,7 @@ $popularPost = [
         </div>
         <?php foreach ($popularPost as $key => $val): ?>
         <div class="popular__posts">
-            <div class="visually-hidden" id="donor">
-                <!--содержимое для поста-цитаты-->
-                <?php if ($val['tip'] == 'post-quote'): ?>
-                <blockquote>
-                    <p>
-                        <?=$val['content'];?>
-                        <!--здесь текст-->
-                    </p>
-                    <cite><?=$val['userName']?></cite>
-                </blockquote>
-                <?php endif; ?>
 
-                <!--содержимое для поста-ссылки-->
-                <?php if ($val['tip'] == 'post-link'): ?>
-                <div class="post-link__wrapper">
-                    <a class="post-link__external" href="http://" title="Перейти по ссылке">
-                        <div class="post-link__info-wrapper">
-                            <div class="post-link__icon-wrapper">
-                                <img src="https://www.google.com/s2/favicons?domain=vitadental.ru" alt="Иконка">
-                            </div>
-                            <div class="post-link__info">
-                                <h3> <?=$val['title'];?>
-                                    <!--здесь заголовок-->
-                                </h3>
-                            </div>
-                        </div>
-                        <span>
-                            <?=$val['content'];?>
-                            <!--здесь ссылка-->
-                        </span>
-                    </a>
-                </div>
-                <?php endif; ?>
-
-                <!--содержимое для поста-фото-->
-                <?php if ($val['tip'] == 'post-photo'): ?>
-                <div class="post-photo__image-wrapper">
-                    <img src="img/<?=$val['content'];?>" alt="Фото от пользователя" width="360" height="240">
-                </div>
-                <?php endif; ?>
-
-                <!--содержимое для поста-видео-->
-                <?php if ($val['tip'] == 'post-video'): ?>
-                <div class="post-video__block">
-                    <div class="post-video__preview">
-                        <?=embed_youtube_cover(/* вставьте ссылку на видео */); ?>
-                        <img src="img/coast-medium.jpg" alt="Превью к видео" width="360" height="188">
-                    </div>
-                    <a href="post-details.html" class="post-video__play-big button">
-                        <svg class="post-video__play-big-icon" width="14" height="14">
-                            <use xlink:href="#icon-video-play-big"></use>
-                        </svg>
-                        <span class="visually-hidden">Запустить проигрыватель</span>
-                    </a>
-                </div>
-                <?php endif; ?>
-
-                <!--содержимое для поста-текста-->
-                <?php if ($val['tip'] == 'post-text'): ?>
-                <p>
-                    <?=$val['content'];?>
-                    <!--здесь текст-->
-                </p>
-                <?php endif; ?>
-            </div>
 
             <article class="popular__post post">
                 <header class="post__header">
@@ -347,7 +283,9 @@ $popularPost = [
                     <?php endif; ?>
 
                     <?php if ($val['tip'] == 'post-text'): ?>
-                        <p><?=$val['content'];?></p>
+                      <blockquote>
+                        <p> <?=$val['content'];?> </p>
+                      </blockquote>
                     <?php endif; ?>
 
                     <?php if ($val['tip'] == 'post-photo'): ?>
