@@ -39,8 +39,8 @@ $popularPost = [
         'userName' => '	Владик',
         'avatar' => 'userpic.jpg'
     ]
-]
-
+];
+  
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -80,6 +80,7 @@ $popularPost = [
         </form>
         <div class="header__nav-wrapper">
             <!-- здесь должен быть PHP код, который показывает следующий тег по условию -->
+            <?php if ($is_auth == 1): ?>
             <nav class="header__nav">
                 <ul class="header__my-nav">
                     <li class="header__my-page header__my-page--popular">
@@ -149,6 +150,7 @@ $popularPost = [
                     </li>
                 </ul>
             </nav>
+            <?php endif; ?>
         </div>
     </div>
 </header>
