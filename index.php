@@ -14,7 +14,11 @@ $popularPost = [
     [
         'title' => 'Игра Престолов',
         'tip' => 'post-text',
-        'content' => 'Не могу дождаться начала финального сезона своего любимого сериала!',
+        'content' => 'Не могу дождаться начала финального сезона своего любимого сериала!
+        Не могу дождаться начала финального сезона своего любимого сериала
+        Не могу дождаться начала финального сезона своего любимого сериала
+        Не могу дождаться начала финального сезона своего любимого сериала
+        Не могу дождаться начала финального сезона своего любимого сериала',
         'userName' => 'Владик',
         'avatar' => 'userpic.jpg'
     ],
@@ -40,7 +44,28 @@ $popularPost = [
         'avatar' => 'userpic.jpg'
     ]
 ];
-  
+
+function getContent($text, $max_length) {
+  $str_length = mb_strlen($text);
+  if ($str_length > $max_length) {
+      $cut_str = explode(' ', $text);
+      foreach ($cut_str as $val) {
+          $new_str = '';
+          $divide = '...';
+          if (mb_strlen($new_str) < $max_length) {
+              $new_str = implode(' ', $cut_str);
+
+          };
+          return $new_str .= $divide;
+      };
+
+
+  };
+  return $text;
+};
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -250,11 +275,13 @@ $popularPost = [
                 </header>
                 <div class="post__main">
                     <p>
-                        <?=$val['content'];?>
+                        <?=getContent($val['content'], 300) ?>
                     </p>
+                    <?php if (mb_strlen($val['content']) > 300): ?>
                     <div class="post-text__more-link-wrapper">
                         <a class="post-text__more-link" href="#">Читать далее</a>
                     </div>
+                    <?php endif; ?>
                 </div>
                 <footer class="post__footer">
                     <div class="post__author">
@@ -402,8 +429,13 @@ $popularPost = [
                 <div class="post__main">
                     <blockquote>
                         <p>
-                            <?=$val['content'];?>
+                            <?=getContent($val['content'], 300) ?>
                         </p>
+                        <?php if (mb_strlen($val['content']) > 300): ?>
+                            <div class="post-quote__more-link-wrapper">
+                                <a class="post-quote__more-link" href="#">Читать далее</a>
+                            </div>
+                        <?php endif; ?>
                         <cite><?=$val['userName'];?></cite>
                     </blockquote>
                 </div>
