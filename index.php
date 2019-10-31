@@ -14,11 +14,7 @@ $popularPost = [
     [
         'title' => 'Игра Престолов',
         'tip' => 'post-text',
-        'content' => 'Не могу дождаться начала финального сезона своего любимого сериала!
-        Не могу дождаться начала финального сезона своего любимого сериала
-        Не могу дождаться начала финального сезона своего любимого сериала
-        Не могу дождаться начала финального сезона своего любимого сериала
-        Не могу дождаться начала финального сезона своего любимого сериала',
+        'content' => 'Lorem ipsum dolor sit ametttttrrrt, consectetuer adipisciererrreng elit. Aenean commodo ligula eget dolorr. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula',
         'userName' => 'Владик',
         'avatar' => 'userpic.jpg'
     ],
@@ -46,24 +42,26 @@ $popularPost = [
 ];
 
 function getContent($text, $max_length) {
-  $str_length = mb_strlen($text);
-  if ($str_length > $max_length) {
-      $cut_str = explode(' ', $text);
-      foreach ($cut_str as $val) {
-          $new_str = '';
-          $divide = '...';
-          if (mb_strlen($new_str) < $max_length) {
-              $new_str = implode(' ', $cut_str);
-
-          };
-          return $new_str .= $divide;
-      };
-
-
-  };
-  return $text;
+    $str_length = mb_strlen($text);
+    if ($str_length > $max_length) {
+        $words = explode(' ', $text);
+        $new_words = [];
+        $divide = '...';
+        foreach ($words as $word) {
+            $new_words[] = $word;
+            $new_str_lng = mb_strlen(implode(' ', $new_words));
+            if ($new_str_lng > $max_length) {
+                array_pop($new_words);
+                return implode(' ', $new_words).$divide;
+            } elseif ($new_str_lng == $max_length) {
+                return implode(' ', $new_words).$divide;
+            };
+        };
+    }
+    else {
+        return $text;
+    }
 };
-
 
 
 ?>
