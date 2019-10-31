@@ -5,19 +5,19 @@ $popularPost = [
     [
         'title' => 'Цитата',
         'tip' => 'post-quote',
-        'content' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
+        'content' => '<div> Мы в жизни любим только раз, а после ищем лишь похожих',
         'userName' => 'Лариса',
         'avatar' => 'userpic-larisa-small.jpg'
     ],
     [
         'title' => 'Игра Престолов',
         'tip' => 'post-text',
-        'content' => 'Lorem ipsum dolor sit ametttttrrrt, consectetuer adipisciererrreng elit. Aenean commodo ligula eget dolorr. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula',
+        'content' => '<div> <div> <div> <div>Lorem ipsum dolor sit ametttttrrrt, consectetuer adipisciererrreng elit. Aenean commodo ligula eget dolorr. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula',
         'userName' => 'Владик',
         'avatar' => 'userpic.jpg'
     ],
     [
-        'title' => 'Наконец, обработал фотки!',
+        'title' => '<div> <div> <div> <div>Наконец, обработал фотки!',
         'tip' => 'post-photo',
         'content' => 'rock-medium.jpg',
         'userName' => 'Виктор',
@@ -44,11 +44,14 @@ $popularPost = [
         $words = explode(' ', $text);
         $new_words = [];
         $divide = '...';
+        $xss_str ='';
         foreach ($words as $word) {
             $new_words[] = $word;
             $new_str_lng = mb_strlen(implode(' ', $new_words));
+
             if ($new_str_lng > $max_length) {
                 array_pop($new_words);
+
                 return implode(' ', $new_words).$divide;
             } elseif ($new_str_lng == $max_length) {
                 return implode(' ', $new_words).$divide;
@@ -59,6 +62,17 @@ $popularPost = [
         return $text;
     }
 };
+
+function xss_content ($content) {
+    foreach ($content as $key => & $x_cont) {
+        $x_cont['title'] = htmlspecialchars($x_cont['title']);
+        $x_cont['tip'] = htmlspecialchars($x_cont['tip']);
+        $x_cont['content'] = htmlspecialchars($x_cont['content']);
+        $x_cont['userName'] = htmlspecialchars($x_cont['userName']);
+        $x_cont['avatar'] = htmlspecialchars($x_cont['avatar']);
+    };
+    return $content;
+}
 
 function include_template ($name, $data) {
     $name = 'templates/' . $name;
