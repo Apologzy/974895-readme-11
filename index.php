@@ -65,11 +65,11 @@ $popularPost = [
 
 function xss_content ($content) {
     foreach ($content as $key => & $x_cont) {
-        $x_cont['title'] = htmlspecialchars($x_cont['title']);
-        $x_cont['tip'] = htmlspecialchars($x_cont['tip']);
-        $x_cont['content'] = htmlspecialchars($x_cont['content']);
-        $x_cont['userName'] = htmlspecialchars($x_cont['userName']);
-        $x_cont['avatar'] = htmlspecialchars($x_cont['avatar']);
+        $x_cont['title'] = strip_tags($x_cont['title']);
+        $x_cont['tip'] = strip_tags($x_cont['tip']);
+        $x_cont['content'] = strip_tags($x_cont['content']);
+        $x_cont['userName'] = strip_tags($x_cont['userName']);
+        $x_cont['avatar'] = strip_tags($x_cont['avatar']);
     };
     return $content;
 }
