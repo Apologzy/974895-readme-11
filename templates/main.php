@@ -1,8 +1,10 @@
 <div class="container">
     <h1 class="page__title page__title--popular">Популярное</h1>
 </div>
-<?php xss_content($popularPost);
-$xxx_sss = xss_content($popularPost);
+<?php
+
+
+
 ?>
 <div class="popular container">
     <div class="popular__filters-wrapper">
@@ -112,7 +114,7 @@ $xxx_sss = xss_content($popularPost);
                                 </div>
                                 <div class="post__info">
                                     <b class="post__author-name"><?=$val['userName'];?></b>
-                                    <time class="post__time" datetime="2019-03-30">Месяц назад</time>
+                                    <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
                         </div>
@@ -166,7 +168,7 @@ $xxx_sss = xss_content($popularPost);
                                 </div>
                                 <div class="post__info">
                                     <b class="post__author-name"><?=$val['userName'];?></b>
-                                    <time class="post__time" datetime="2019-03-30">Месяц назад</time>
+                                    <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
                         </div>
@@ -213,7 +215,7 @@ $xxx_sss = xss_content($popularPost);
                                 </div>
                                 <div class="post__info">
                                     <b class="post__author-name"><?=$val['userName'];?></b>
-                                    <time class="post__time" datetime="2019-03-30">Месяц назад</time>
+                                    <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
                         </div>
@@ -268,7 +270,7 @@ $xxx_sss = xss_content($popularPost);
                                 </div>
                                 <div class="post__info">
                                     <b class="post__author-name"><?=$val['userName'];?></b>
-                                    <time class="post__time" datetime="2019-03-30">Месяц назад</time>
+                                    <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
                         </div>
