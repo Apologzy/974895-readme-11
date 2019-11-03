@@ -77,19 +77,19 @@ function get_noun_plural_form(int $number, string $one, string $two, string $man
     $mod100 = $number % 100;
     switch (true) {
         case ($mod100 >= 11 && $mod100 <= 20):
-            return $number. $many;
+            return $number . ' ' . $many;
 
         case ($mod10 > 5):
-            return $number . $many;
+            return $number . ' ' . $many;
 
         case ($mod10 === 1):
-            return $number . $one;
+            return $number . ' '  . $one;
 
         case ($mod10 >= 2 && $mod10 <= 4):
-            return $number . $two;
+            return $number . ' '  . $two;
 
         default:
-            return $number . $many;
+            return $number . ' '  . $many;
     }
 
 };
