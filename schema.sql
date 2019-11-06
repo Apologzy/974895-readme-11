@@ -1,0 +1,81 @@
+CREATE DATABASE IF NOT EXISTS readme
+DEFAULT CHARACTER SET UTF8
+DEFAULT COLLATE UTF8_GENERAL_CI;
+USE readme;
+
+CREATE TABLE IF NOT EXISTS users  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+dt_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+email VARCHAR(150)  NOT NULL  UNIQUE,
+login VARCHAR(50)  NOT NULL  UNIQUE,
+pass VARCHAR(12)  NOT NULL,
+avatar VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS posts (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+content_id INT,
+dt_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+title VARCHAR(150),
+content TEXT,
+autor VARCHAR(100),
+img VARCHAR(255),
+video VARCHAR(255),
+link VARCHAR(255),
+num_of_views INT
+);
+
+
+CREATE TABLE IF NOT EXISTS comments  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+post_id INT,
+dt_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+content TEXT
+);
+
+CREATE TABLE IF NOT EXISTS likes  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+post_id INT
+);
+
+CREATE TABLE IF NOT EXISTS subscription  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+creator_id INT,
+subscriber_id INT
+);
+
+CREATE TABLE IF NOT EXISTS  messages  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+sunder_id INT,
+recipient_id INT,
+dt_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+content TEXT
+);
+
+CREATE TABLE IF NOT EXISTS hashtags  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+h_name VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS post_hashtag  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+post_id INT,
+hastag_id INT
+);
+
+CREATE TABLE IF NOT EXISTS tip_content  (
+id INT AUTO_INCREMENT PRIMARY KEY,
+text_field TEXT,
+quote_field TEXT,
+img_field VARCHAR(255),
+video_field VARCHAR(255),
+link_field VARCHAR(255),
+photo_class_name VARCHAR(255),
+video_class_name VARCHAR(255),
+link_class_name VARCHAR(255),
+text_class_name VARCHAR(255),
+quote_class_name VARCHAR(255)
+);
