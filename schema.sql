@@ -41,7 +41,7 @@ user_id INT,
 post_id INT
 );
 
-CREATE TABLE IF NOT EXISTS subscription  (
+CREATE TABLE IF NOT EXISTS subscriptions  (
 id INT AUTO_INCREMENT PRIMARY KEY,
 creator_id INT,
 subscriber_id INT
@@ -49,7 +49,7 @@ subscriber_id INT
 
 CREATE TABLE IF NOT EXISTS  messages  (
 id INT AUTO_INCREMENT PRIMARY KEY,
-sunder_id INT,
+sender_id INT,
 recipient_id INT,
 dt_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 content TEXT
@@ -60,22 +60,14 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 h_name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS post_hashtag  (
+CREATE TABLE IF NOT EXISTS posts_hashtags  (
 id INT AUTO_INCREMENT PRIMARY KEY,
 post_id INT,
 hastag_id INT
 );
 
-CREATE TABLE IF NOT EXISTS tip_content  (
+CREATE TABLE IF NOT EXISTS content_types  (
 id INT AUTO_INCREMENT PRIMARY KEY,
-text_field TEXT,
-quote_field TEXT,
-img_field VARCHAR(255),
-video_field VARCHAR(255),
-link_field VARCHAR(255),
-photo_class_name VARCHAR(255),
-video_class_name VARCHAR(255),
-link_class_name VARCHAR(255),
-text_class_name VARCHAR(255),
-quote_class_name VARCHAR(255)
+field_name ENUM ("Текст", "Цитата", "Картинка", "Видео", "Ссылка"),
+icon_class ENUM ("photo", "video", "text", "quote", "link")
 );
