@@ -5,19 +5,19 @@ $popularPost = [
     [
         'title' => 'Цитата',
         'tip' => 'post-quote',
-        'content' => '<div> Мы в жизни любим только раз, а после ищем лишь похожих',
+        'content' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
         'userName' => 'Лариса',
         'avatar' => 'userpic-larisa-small.jpg'
     ],
     [
         'title' => 'Игра Престолов',
         'tip' => 'post-text',
-        'content' => '<div> <div> <div> <div>Lorem ipsum dolor sit ametttttrrrt, consectetuer adipisciererrreng elit. Aenean commodo ligula eget dolorr. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula',
+        'content' => 'Lorem ipsum dolor sit ametttttrrrt, consectetuer adipisciererrreng elit',
         'userName' => 'Владик',
         'avatar' => 'userpic.jpg'
     ],
     [
-        'title' => '<div> <div> <div> <div>Наконец, обработал фотки!',
+        'title' => 'Наконец, обработал фотки!',
         'tip' => 'post-photo',
         'content' => 'rock-medium.jpg',
         'userName' => 'Виктор',
