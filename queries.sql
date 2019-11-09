@@ -42,12 +42,12 @@ user_id = 2,
 content_id = 5;
 
 INSERT INTO comments
-set content = 'Крутое фото чувак';
+set content = 'Крутое фото чувак',
 user_id = 1,
 post_id = 3;
 
 INSERT INTO comments
-set content = 'Отличная цитата';
+set content = 'Отличная цитата',
 user_id = 2,
 post_id = 1;
 
