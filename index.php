@@ -1,6 +1,29 @@
 <?php
 $is_auth = 1;
 $user_name = 'Кирилл'; // укажите здесь ваше имя
+
+$con = mysqli_connect('127.0.0.1', 'root', '', 'readme');
+if ($con == false) {
+    print('Ошибка подключения ' . mysqli_connect_error());
+}
+else {
+    mysqli_set_charset($con, 'utf8');
+    $sql_posts = 'SELECT p.id, p.user_id, p.content_id, u.login, u.avatar, t.field_name, t.icon_class, p.dt_create, title, content, autor, img, video, link, num_of_views FROM posts p '
+    . 'JOIN users u ON p.user_id = u.id '
+    . 'JOIN content_types t ON p.content_id = t.id '
+    . 'ORDER BY num_of_views DESC';
+    $posts_result = mysqli_query($con, $sql_posts);
+    if (!$posts_result) {
+        $error = mysqli_error($con);
+        print('Ошибка mySQL: ' . $error);
+    }
+    else {
+        $pop_post = mysqli_fetch_all($posts_result, MYSQLI_ASSOC);
+    }
+
+};
+
+
 $popularPost = [
     [
         'title' => 'Цитата',
@@ -40,7 +63,7 @@ $popularPost = [
 ];
 
 date_default_timezone_get("Europe/Moskow");
-$xxx_sss = xss_content($popularPost);
+$xxx_sss = xss_content($pop_post);
 $dt_now = date_create('now');
 
 foreach ($xxx_sss as $key => &$post) {
@@ -146,9 +169,14 @@ function getContent($text, $max_length) {
 function xss_content ($content) {
     foreach ($content as $key => & $x_cont) {
         $x_cont['title'] = strip_tags($x_cont['title']);
-        $x_cont['tip'] = strip_tags($x_cont['tip']);
+        $x_cont['login'] = strip_tags($x_cont['login']);
         $x_cont['content'] = strip_tags($x_cont['content']);
-        $x_cont['userName'] = strip_tags($x_cont['userName']);
+        $x_cont['login'] = strip_tags($x_cont['login']);
+        $x_cont['avatar'] = strip_tags($x_cont['avatar']);
+        $x_cont['autor'] = strip_tags($x_cont['autor']);
+        $x_cont['img'] = strip_tags($x_cont['img']);
+        $x_cont['link'] = strip_tags($x_cont['link']);
+        $x_cont['video'] = strip_tags($x_cont['video']);
         $x_cont['avatar'] = strip_tags($x_cont['avatar']);
     };
     return $content;
@@ -174,7 +202,7 @@ function include_template ($name, $data) {
 
 
 
-$page_content = include_template ('main.php', ['popularPost' => $popularPost, 'xxx_sss' => $xxx_sss]);
+$page_content = include_template ('main.php', ['pop_post' => $pop_post, 'xxx_sss' => $xxx_sss]);
 $layout_content = include_template ('layout.php',['pop_content' => $page_content, 'title' => 'Readme: популярное', 'is_auth' => $is_auth]);
 print ($layout_content);
 ?>

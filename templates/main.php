@@ -90,8 +90,8 @@
     </div>
     <?php foreach ($xxx_sss as $key => $val): ?>
         <div class="popular__posts">
-            <?php if ($val['tip'] == 'post-text'): ?>
-                <article class="popular__post post <?=$val['tip'];?>">
+            <?php if ($val['icon_class'] == 'post'): ?>
+                <article class="popular__post post post-text">
                     <header class="post__header">
                         <h2><a href="#"><?=$val['title'];?></a></h2>
                     </header>
@@ -113,7 +113,7 @@
                                          alt="Аватар пользователя">
                                 </div>
                                 <div class="post__info">
-                                    <b class="post__author-name"><?=$val['userName'];?></b>
+                                    <b class="post__author-name"><?=$val['login'];?></b>
                                     <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
@@ -142,20 +142,20 @@
                         </div>
                     </footer>
                 </article>
-            <?php elseif ($val['tip'] == 'post-link'): ?>
-                <article class="popular__post post <?=$val['tip'];?>">
+            <?php elseif ($val['icon_class'] == 'link'): ?>
+                <article class="popular__post post post-link">
                     <header class="post__header">
                         <h2><a href="#"><?=$val['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <div class="post-link__wrapper">
-                            <a class="post-link__external" href="<?=$val['content'];?>" title="Перейти по ссылке">
+                            <a class="post-link__external" href="<?=$val['link'];?>" title="Перейти по ссылке">
                                 <div class="post-link__info-wrapper">
                                     <div class="post-link__info">
                                         <h3>HTML Academy</h3>
                                     </div>
                                 </div>
-                                <span><?=$val['content'];?></span>
+                                <span><?=$val['link'];?></span>
                             </a>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                                          alt="Аватар пользователя">
                                 </div>
                                 <div class="post__info">
-                                    <b class="post__author-name"><?=$val['userName'];?></b>
+                                    <b class="post__author-name"><?=$val['login'];?></b>
                                     <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
@@ -196,14 +196,14 @@
                         </div>
                     </footer>
                 </article>
-            <?php elseif ($val['tip'] == 'post-photo'): ?>
-                <article class="popular__post post <?=$val['tip'];?>">
+            <?php elseif ($val['icon_class'] == 'photo'): ?>
+                <article class="popular__post post post-photo">
                     <header class="post__header">
                         <h2><a href="#"><?=$val['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <div class="post-photo__image-wrapper">
-                            <img src="img/<?=$val['content'];?>" alt="Фото от пользователя" width="360" height="240">
+                            <img src="img/<?=$val['img'];?>" alt="Фото от пользователя" width="360" height="240">
                         </div>
                     </div>
                     <footer class="post__footer">
@@ -214,7 +214,7 @@
                                          alt="Аватар пользователя">
                                 </div>
                                 <div class="post__info">
-                                    <b class="post__author-name"><?=$val['userName'];?></b>
+                                    <b class="post__author-name"><?=$val['login'];?></b>
                                     <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
@@ -243,8 +243,8 @@
                         </div>
                     </footer>
                 </article>
-            <?php elseif ($val['tip'] == 'post-quote'): ?>
-                <article class="popular__post post <?=$val['tip'];?>">
+            <?php elseif ($val['icon_class'] == 'quote'): ?>
+                <article class="popular__post post post-quote">
                     <header class="post__header">
                         <h2><a href="#"><?=$val['title'];?></a></h2>
                     </header>
@@ -258,7 +258,7 @@
                                     <a class="post-quote__more-link" href="#">Читать далее</a>
                                 </div>
                             <?php endif; ?>
-                            <cite><?=$val['userName'];?></cite>
+                            <cite><?=$val['autor'];?></cite>
                         </blockquote>
                     </div>
                     <footer class="post__footer">
@@ -269,7 +269,7 @@
                                          alt="Аватар пользователя">
                                 </div>
                                 <div class="post__info">
-                                    <b class="post__author-name"><?=$val['userName'];?></b>
+                                    <b class="post__author-name"><?=$val['login'];?></b>
                                     <time class="post__time" datetime="<?= $val['date_original']; ?>" title="<?= $val['date_russian']; ?>"><?= $val['date_rel']; ?></time>
                                 </div>
                             </a>
