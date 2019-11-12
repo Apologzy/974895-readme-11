@@ -4,7 +4,7 @@ $user_name = 'Кирилл'; // укажите здесь ваше имя
 
 $con = mysqli_connect('127.0.0.1', 'root', '', 'readme');
 if ($con == false) {
-    print('Ошибка подключения ' . mysqli_connect_error());
+    exit('Ошибка подключения ' . mysqli_connect_error());
 }
 else {
     mysqli_set_charset($con, 'utf8');
@@ -15,7 +15,7 @@ else {
     $posts_result = mysqli_query($con, $sql_posts);
     if (!$posts_result) {
         $error = mysqli_error($con);
-        print('Ошибка mySQL: ' . $error);
+        exit('Ошибка mySQL: ' . $error);
     }
     else {
         $pop_post = mysqli_fetch_all($posts_result, MYSQLI_ASSOC);
@@ -24,49 +24,12 @@ else {
 };
 
 
-$popularPost = [
-    [
-        'title' => 'Цитата',
-        'tip' => 'post-quote',
-        'content' => '<div> Мы в жизни любим только раз, а после ищем лишь похожих',
-        'userName' => 'Лариса',
-        'avatar' => 'userpic-larisa-small.jpg'
-    ],
-    [
-        'title' => 'Игра Престолов',
-        'tip' => 'post-text',
-        'content' => '<div> <div> <div> <div>Lorem ipsum dolor sit ametttttrrrt, consectetuer adipisciererrreng elit. Aenean commodo ligula eget dolorr. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula',
-        'userName' => 'Владик',
-        'avatar' => 'userpic.jpg'
-    ],
-    [
-        'title' => '<div> <div> <div> <div>Наконец, обработал фотки!',
-        'tip' => 'post-photo',
-        'content' => 'rock-medium.jpg',
-        'userName' => 'Виктор',
-        'avatar' => 'userpic-mark.jpg'
-    ],
-    [
-        'title' => 'Моя мечта',
-        'tip' => 'post-photo',
-        'content' => 'coast-medium.jpg',
-        'userName' => 'Лариса',
-        'avatar' => 'userpic-larisa-small.jpg'
-    ],
-    [
-        'title' => 'Лучшие курсы',
-        'tip' => 'post-link',
-        'content' => 'www.htmlacademy.ru',
-        'userName' => '	Владик',
-        'avatar' => 'userpic.jpg'
-    ]
-];
 
 date_default_timezone_get("Europe/Moskow");
-$xxx_sss = xss_content($pop_post);
+$cleaned_post = posts_filtered($pop_post);
 $dt_now = date_create('now');
 
-foreach ($xxx_sss as $key => &$post) {
+foreach ($cleaned_post as $key => &$post) {
     $dt_random = generate_random_date($key);
     $post['date_russian'] = date('d.m.Y H:i', strtotime($dt_random));
     $post['date_original'] = $dt_random;
@@ -166,7 +129,7 @@ function getContent($text, $max_length) {
     }
 };
 
-function xss_content ($content) {
+function posts_filtered ($content) {
     foreach ($content as $key => & $x_cont) {
         $x_cont['title'] = strip_tags($x_cont['title']);
         $x_cont['login'] = strip_tags($x_cont['login']);
@@ -202,7 +165,7 @@ function include_template ($name, $data) {
 
 
 
-$page_content = include_template ('main.php', ['pop_post' => $pop_post, 'xxx_sss' => $xxx_sss]);
+$page_content = include_template ('main.php', ['pop_post' => $pop_post, 'cleaned_post' => $cleaned_post]);
 $layout_content = include_template ('layout.php',['pop_content' => $page_content, 'title' => 'Readme: популярное', 'is_auth' => $is_auth]);
 print ($layout_content);
 ?>
