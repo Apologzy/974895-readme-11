@@ -23,6 +23,15 @@ else {
 
 };
 
+$sql_con_types = 'SELECT * FROM content_types';
+$cont_result = mysqli_query($con, $sql_con_types);
+if (!$cont_result) {
+    $error = mysqli_error($con);
+    exit('Ошибка mySQL: ' . $error);
+}
+else {
+    $content_types = mysqli_fetch_all($cont_result, MYSQLI_ASSOC);
+};
 
 
 date_default_timezone_get("Europe/Moskow");
@@ -165,7 +174,7 @@ function include_template ($name, $data) {
 
 
 
-$page_content = include_template ('main.php', ['pop_post' => $pop_post, 'cleaned_post' => $cleaned_post]);
+$page_content = include_template ('main.php', ['pop_post' => $pop_post, 'cleaned_post' => $cleaned_post, 'content_types' => $content_types]);
 $layout_content = include_template ('layout.php',['pop_content' => $page_content, 'title' => 'Readme: популярное', 'is_auth' => $is_auth]);
 print ($layout_content);
 ?>
