@@ -106,7 +106,7 @@
 
 <main class="page__main page__main--publication">
     <div class="container">
-        <?php $post_id = $_GET['post_id'] ?? 1; ?>
+        <?php $post_id = $_GET['post_id'] ?? null; ?>
         <?php
         $con = mysqli_connect('127.0.0.1', 'root', '', 'readme');
         if ($con == false) {
@@ -114,32 +114,35 @@
         }
         else {
             mysqli_set_charset($con, 'utf8');
-            $sql_post_id = 'SELECT * FROM posts '
-                . 'WHERE id = "$post_id"';
+            $sql_post_id = 'SELECT * FROM posts p '
+                . 'JOIN content_types t ON p.content_id = t.id '
+                . "WHERE p.id = $post_id";
             $posts_result_id = mysqli_query($con, $sql_post_id);
             if (!$posts_result_id) {
                 $error = mysqli_error($con);
                 exit('Ошибка mySQL: ' . $error);
             }
             else {
-                $post_iddd = mysqli_fetch_all($posts_result_id, MYSQLI_ASSOC);
-                var_dump($post_iddd);
-                var_dump($post_id);
+                $post_card = mysqli_fetch_assoc($posts_result_id);
+                //var_dump($post_card);
+                //var_dump($post_id);
 
             }
 
         };
-        exit();
         ?>
-
-        <h1 class="page__title page__title--publication">Наконец, обработала фотки!</h1>
+        <?php if($post_id !== null) : ?>
+        <h1 class="page__title page__title--publication"><?= $post_card['title']; ?></h1>
         <section class="post-details">
             <h2 class="visually-hidden">Публикация</h2>
-            <div class="post-details__wrapper post-photo">
+            <div class="post-details__wrapper post-<?= $post_card['icon_class']; ?>">
                 <div class="post-details__main-block post post--details">
+                    <?php if($post_card['icon_class'] == 'photo' ): ?>
                     <div class="post-details__image-wrapper post-photo__image-wrapper">
                         <img src="img/rock-default.jpg" alt="Фото от пользователя" width="760" height="507">
                     </div>
+                    <?php endif; ?>
+                    <?php endif; ?>
                     <div class="post__indicators">
                         <div class="post__buttons">
                             <a class="post__indicator post__indicator--likes button" href="#" title="Лайк">
