@@ -46,9 +46,9 @@
                    <?php $content_id = $_GET['content_id'] ?? null; ?>
                 <li class="popular__filters-item filters__item">
                     <?php if($content_id == $content_type['id']) : ?>
-                    <a class="filters__button filters__button--<?=$content_type['icon_class']; ?>button" href="/index.php?content_id=<?=$content_type['id']; ?>">
+                    <a class="filters__button filters__button--active filters__button--<?=$content_type['icon_class']; ?>button" href="/index.php?content_id=<?=$content_type['id']; ?>">
                         <?php else : ?>
-                    <a class="filters__button filters__button--<?=$content_type['icon_class']; ?>button" href="/index.php?content_id=<?=$content_id; ?>">
+                    <a class="filters__button filters__button--<?=$content_type['icon_class']; ?>button" href="/index.php?content_id=<?=$content_type['id']; ?>">
                         <?php endif; ?>
                         <span class="visually-hidden"><?=$content_type['field_name']; ?></span>
                         <svg class="filters__icon" width="22" height="18">
@@ -67,7 +67,7 @@
             <?php if ($post['icon_class'] == 'text'): ?>
                 <article class="popular__post post post-text">
                     <header class="post__header">
-                        <h2><a href="#"><?=$post['title'];?></a></h2>
+                        <h2><a href="/post.php?=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <p>
@@ -119,7 +119,7 @@
             <?php elseif ($post['icon_class'] == 'link'): ?>
                 <article class="popular__post post post-link">
                     <header class="post__header">
-                        <h2><a href="#"><?=$post['title'];?></a></h2>
+                        <h2><a href="/post.php?=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <div class="post-link__wrapper">
@@ -173,7 +173,7 @@
             <?php elseif ($post['icon_class'] == 'photo'): ?>
                 <article class="popular__post post post-photo">
                     <header class="post__header">
-                        <h2><a href="#"><?=$post['title'];?></a></h2>
+                        <h2><a href="/post.php?=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <div class="post-photo__image-wrapper">
@@ -220,7 +220,7 @@
             <?php elseif ($post['icon_class'] == 'quote'): ?>
                 <article class="popular__post post post-quote">
                     <header class="post__header">
-                        <h2><a href="#"><?=$post['title'];?></a></h2>
+                        <h2><a href="/post.php"><?=$post['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <blockquote>

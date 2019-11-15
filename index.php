@@ -173,7 +173,7 @@ function include_template ($name, $data) {
 
 
 
-
+$post_content = include_template ('post.php', []);
 $page_content = include_template ('main.php', ['pop_post' => $pop_post, 'cleaned_post' => $cleaned_post, 'content_types' => $content_types]);
 $layout_content = include_template ('layout.php',['pop_content' => $page_content, 'title' => 'Readme: популярное', 'is_auth' => $is_auth]);
 print ($layout_content);
