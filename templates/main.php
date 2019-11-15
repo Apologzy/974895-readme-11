@@ -119,7 +119,7 @@
             <?php elseif ($post['icon_class'] == 'link'): ?>
                 <article class="popular__post post post-link">
                     <header class="post__header">
-                        <h2><a href="/post.php?=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
+                        <h2><a href="/post.php?post_id=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <div class="post-link__wrapper">
@@ -173,7 +173,7 @@
             <?php elseif ($post['icon_class'] == 'photo'): ?>
                 <article class="popular__post post post-photo">
                     <header class="post__header">
-                        <h2><a href="/post.php?=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
+                        <h2><a href="/post.php?post_id=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <div class="post-photo__image-wrapper">
@@ -220,7 +220,7 @@
             <?php elseif ($post['icon_class'] == 'quote'): ?>
                 <article class="popular__post post post-quote">
                     <header class="post__header">
-                        <h2><a href="/post.php"><?=$post['title'];?></a></h2>
+                        <h2><a href="/post.php?post_id=<?=$post['id']; ?>"><?=$post['title'];?></a></h2>
                     </header>
                     <div class="post__main">
                         <blockquote>

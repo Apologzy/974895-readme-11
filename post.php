@@ -106,6 +106,32 @@
 
 <main class="page__main page__main--publication">
     <div class="container">
+        <?php $post_id = $_GET['post_id'] ?? 1; ?>
+        <?php
+        $con = mysqli_connect('127.0.0.1', 'root', '', 'readme');
+        if ($con == false) {
+            exit('Ошибка подключения ' . mysqli_connect_error());
+        }
+        else {
+            mysqli_set_charset($con, 'utf8');
+            $sql_post_id = 'SELECT * FROM posts '
+                . 'WHERE id = "$post_id"';
+            $posts_result_id = mysqli_query($con, $sql_post_id);
+            if (!$posts_result_id) {
+                $error = mysqli_error($con);
+                exit('Ошибка mySQL: ' . $error);
+            }
+            else {
+                $post_iddd = mysqli_fetch_all($posts_result_id, MYSQLI_ASSOC);
+                var_dump($post_iddd);
+                var_dump($post_id);
+
+            }
+
+        };
+        exit();
+        ?>
+
         <h1 class="page__title page__title--publication">Наконец, обработала фотки!</h1>
         <section class="post-details">
             <h2 class="visually-hidden">Публикация</h2>
