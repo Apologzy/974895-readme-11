@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="page__title page__title--popular">Популярное</h1>
 </div>
-<?php foreach ($content_types as $content_type): ?>
+
 <div class="popular container">
     <div class="popular__filters-wrapper">
         <div class="popular__sorting sorting">
@@ -42,65 +42,26 @@
                         <span>Все</span>
                     </a>
                 </li>
-                <?php if ($content_type['icon_class'] == 'photo'): ?>
-                   <?php $content_id = $_GET['content_id'] ?? 'null'; ?>
+                <?php foreach ($content_types as $content_type): ?>
+                   <?php $content_id = $_GET['content_id'] ?? null; ?>
                 <li class="popular__filters-item filters__item">
-                    <a class="filters__button filters__button--photo button" href="/index.php?content_id=<?=$content_type['id']; ?>">
-                        <span class="visually-hidden">Фото</span>
+                    <?php if($content_id == $content_type['id']) : ?>
+                    <a class="filters__button filters__button--<?=$content_type['icon_class']; ?>button" href="/index.php?content_id=<?=$content_type['id']; ?>">
+                        <?php else : ?>
+                    <a class="filters__button filters__button--<?=$content_type['icon_class']; ?>button" href="/index.php?content_id=<?=$content_id; ?>">
+                        <?php endif; ?>
+                        <span class="visually-hidden"><?=$content_type['field_name']; ?></span>
                         <svg class="filters__icon" width="22" height="18">
-                            <use xlink:href="#icon-filter-photo"></use>
+                            <use xlink:href="#icon-filter-<?=$content_type['icon_class']; ?>"></use>
                         </svg>
                     </a>
                 </li>
 
-                <?php elseif ($content_type['icon_class'] == 'video'): ?>
-                    <?php $content_id = $_GET['content_id'] ?? 'null'; ?>
-                <li class="popular__filters-item filters__item">
-                    <a class="filters__button filters__button--video button" href="/index.php?content_id=<?=$content_type['id']; ?>">
-                        <span class="visually-hidden">Видео</span>
-                        <svg class="filters__icon" width="24" height="16">
-                            <use xlink:href="#icon-filter-video"></use>
-                        </svg>
-                    </a>
-                </li>
-
-                <?php elseif ($content_type['icon_class'] == 'text'): ?>
-                    <?php $content_id = $_GET['content_id'] ?? 'null'; ?>
-                <li class="popular__filters-item filters__item">
-                    <a class="filters__button filters__button--text button" href="/index.php?content_id=<?=$content_type['id']; ?>">
-                        <span class="visually-hidden">Текст</span>
-                        <svg class="filters__icon" width="20" height="21">
-                            <use xlink:href="#icon-filter-text"></use>
-                        </svg>
-                    </a>
-                </li>
-
-                <?php elseif ($content_type['icon_class'] == 'quote'): ?>
-                    <?php $content_id = $_GET['content_id'] ?? 'null'; ?>
-                <li class="popular__filters-item filters__item">
-                    <a class="filters__button filters__button--quote button" href="/index.php?content_id=<?=$content_type['id']; ?>">
-                        <span class="visually-hidden">Цитата</span>
-                        <svg class="filters__icon" width="21" height="20">
-                            <use xlink:href="#icon-filter-quote"></use>
-                        </svg>
-                    </a>
-                </li>
-
-                <?php elseif ($content_type['icon_class'] == 'link'): ?>
-                    <?php $content_id = $_GET['content_id'] ?? 'null'; ?>
-                <li class="popular__filters-item filters__item">
-                    <a class="filters__button filters__button--link button" href="/index.php?content_id=<?=$content_type['id']; ?>">
-                        <span class="visually-hidden">Ссылка</span>
-                        <svg class="filters__icon" width="21" height="18">
-                            <use xlink:href="#icon-filter-link"></use>
-                        </svg>
-                    </a>
-                </li>
-                <?php endif; ?>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
-    <?php endforeach; ?>
+
     <?php foreach ($cleaned_post as $post): ?>
         <div class="popular__posts">
             <?php if ($post['icon_class'] == 'text'): ?>
