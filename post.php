@@ -115,6 +115,7 @@
         else {
             mysqli_set_charset($con, 'utf8');
             $sql_post_id = 'SELECT * FROM posts p '
+                . 'JOIN users u ON p.user_id = u.id '
                 . 'JOIN content_types t ON p.content_id = t.id '
                 . "WHERE p.id = $post_id";
             $posts_result_id = mysqli_query($con, $sql_post_id);
@@ -139,7 +140,50 @@
                 <div class="post-details__main-block post post--details">
                     <?php if($post_card['icon_class'] == 'photo' ): ?>
                     <div class="post-details__image-wrapper post-photo__image-wrapper">
-                        <img src="img/rock-default.jpg" alt="Фото от пользователя" width="760" height="507">
+                        <img src="img/<?= $post_card['img']; ?>" alt="Фото от пользователя" width="760" height="507">
+                    </div>
+                    <?php endif; ?>
+                    <?php if($post_card['icon_class'] == 'quote' ): ?>
+                    <div class="post-details__image-wrapper post-quote">
+                        <div class="post__main">
+                            <blockquote>
+                                <p>
+                                    <?= $post_card['content']; ?>
+                                </p>
+                                <cite><?= $post_card['autor']; ?></cite>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($post_card['icon_class'] == 'text' ): ?>
+                    <div class="post-details__image-wrapper post-text">
+                        <div class="post__main">
+                            <p>
+                                <?= $post_card['content']; ?>
+                            </p>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($post_card['icon_class'] == 'link' ): ?>
+                    <div class="post__main">
+                        <div class="post-link__wrapper">
+                            <a class="post-link__external" href="http://<?= $post_card['link']; ?>" title="Перейти по ссылке">
+                                <div class="post-link__info-wrapper">
+                                    <div class="post-link__icon-wrapper">
+                                        <img src="https://www.google.com/s2/favicons?domain=<?= $post_card['link']; ?>" alt="Иконка">
+                                    </div>
+                                    <div class="post-link__info">
+                                        <h3><?= $post_card['content']; ?></h3>
+                                        <span><?= $post_card['link']; ?></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($post_card['icon_class'] == 'video' ): ?>
+                    <div class="post-details__image-wrapper post-photo__image-wrapper">
+                        <?=embed_youtube_video($youtube_url); ?>
                     </div>
                     <?php endif; ?>
                     <?php endif; ?>

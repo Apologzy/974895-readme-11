@@ -24,6 +24,33 @@ else {
 
 };
 
+function get_post_assoc($conect, $get_id) {
+    if ($conect == false) {
+        exit('Ошибка подключения ' . mysqli_connect_error());
+    }
+    else {
+        mysqli_set_charset($conect, 'utf8');
+        $sql_post_id = 'SELECT * FROM posts p '
+            . 'JOIN users u ON p.user_id = u.id '
+            . 'JOIN content_types t ON p.content_id = t.id '
+            . "WHERE p.content_id = $get_id";
+        $posts_result_id = mysqli_query($conect, $sql_post_id);
+        if (!$posts_result_id) {
+            $error = mysqli_error($conect);
+            exit('Ошибка mySQL: ' . $error);
+        }
+        else {
+            return $post_card = mysqli_fetch_all($posts_result_id, MYSQLI_ASSOC);
+            //var_dump($post_card);
+            //var_dump($post_id);
+
+        }
+
+    };
+};
+
+
+
 $sql_con_types = 'SELECT * FROM content_types';
 $cont_result = mysqli_query($con, $sql_con_types);
 if (!$cont_result) {
@@ -175,7 +202,7 @@ function include_template ($name, $data) {
 
 
 
-$page_content = include_template ('main.php', ['pop_post' => $pop_post, 'cleaned_post' => $cleaned_post, 'content_types' => $content_types]);
+$page_content = include_template ('main.php', ['pop_post' => $pop_post, 'cleaned_post' => $cleaned_post, 'content_types' => $content_types, 'con' => $con]);
 $layout_content = include_template ('layout.php',['pop_content' => $page_content, 'title' => 'Readme: популярное', 'is_auth' => $is_auth]);
 print ($layout_content);
 ?>
