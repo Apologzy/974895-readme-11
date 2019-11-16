@@ -30,7 +30,7 @@ function get_post_assoc($conect, $get_id) {
     }
     else {
         mysqli_set_charset($conect, 'utf8');
-        $sql_post_id = 'SELECT * FROM posts p '
+        $sql_post_id = 'SELECT p.id, p.user_id, p.content_id, u.login, u.avatar, t.field_name, t.icon_class, p.dt_create, title, content, autor, img, video, link, num_of_views FROM posts p '
             . 'JOIN users u ON p.user_id = u.id '
             . 'JOIN content_types t ON p.content_id = t.id '
             . "WHERE p.content_id = $get_id";

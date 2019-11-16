@@ -68,7 +68,7 @@
 
             <article class="popular__post post post-text">
                 <header class="post__header">
-                    <h2><a href="/post.php?post_id=<?=$post_card['content_id']; ?>"><?=$post_card['title'];?></a></h2>
+                    <h2><a href="/post.php?post_id=<?=$post_card['id']; ?>"><?=$post_card['title'];?></a></h2>
                 </header>
                 <div class="post__main">
                     <p>
