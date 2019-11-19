@@ -64,7 +64,7 @@
 
         <div class="popular__posts">
             <?php foreach ($post_cards as $post_card): ?>
-                <?php switch ($post_content_id) {
+                <?php switch ($post_card['content_id']) {
                     case 1:
                         echo (include_template('post_cards/text_card.php', ['post_card' => $post_card]));
                         break;
@@ -79,23 +79,6 @@
                         break;
                     case 5:
                         echo (include_template('post_cards/link_card.php', ['post_card' => $post_card]));
-                        break;
-                    case 0:
-                        if($post_card['icon_class'] == 'text') {
-                            echo (include_template('post_cards/text_card.php', ['post_card' => $post_card]));
-                        }
-                        else if ($post_card['icon_class'] == 'photo') {
-                            echo (include_template('post_cards/photo_card.php', ['post_card' => $post_card]));
-                        }
-                        else if ($post_card['icon_class'] == 'quote') {
-                            echo (include_template('post_cards/quote_card.php', ['post_card' => $post_card]));
-                        }
-                        else if ($post_card['icon_class'] == 'video') {
-                            echo (include_template('post_cards/video_card.php', ['post_card' => $post_card]));
-                        }
-                        else if ($post_card['icon_class'] == 'link') {
-                            echo (include_template('post_cards/link_card.php', ['post_card' => $post_card]));
-                        }
                         break;
                 };
                 ?>
