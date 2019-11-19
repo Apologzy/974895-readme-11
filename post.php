@@ -125,6 +125,10 @@
             }
             else {
                 $post_card = mysqli_fetch_assoc($posts_result_id);
+                if (!$post_card) {
+                    http_response_code(404);
+                    die('Страница не найдена');
+                }
                 //var_dump($post_card);
                 //var_dump($post_id);
 
