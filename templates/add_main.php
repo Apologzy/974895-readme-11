@@ -6,6 +6,7 @@
         <div class="adding-post container">
             <div class="adding-post__tabs-wrapper tabs">
                 <div class="adding-post__tabs filters">
+
                     <ul class="adding-post__tabs-list filters__list tabs__list">
                         <?php foreach ($content_types as $content_type): ?>
                         <li class="adding-post__tabs-item filters__item">
@@ -29,22 +30,25 @@
                     </ul>
                 </div>
                 <div class="adding-post__tab-content">
-
+                        <?php
+                        $errors = [];
+                        $form_con_arr = [];
+                        ?>
                         <?php switch ($content_id) {
                             case 1:
-                                echo (include_template('add_posts/form_post_text.php', []));
+                                echo (include_template('add_posts/form_post_text.php', ['errors' => $errors, 'form_con_arr' => $form_con_arr]));
                                 break;
                             case 2:
-                                echo (include_template('add_posts/form_post_photo.php', []));
+                                echo (include_template('add_posts/form_post_photo.php', ['errors' => $errors, 'form_con_arr' => $form_con_arr]));
                                 break;
                             case 3:
-                                echo (include_template('add_posts/form_post_quote.php', []));
+                                echo (include_template('add_posts/form_post_quote.php', ['errors' => $errors, 'form_con_arr' => $form_con_arr]));
                                 break;
                             case 4:
-                                echo (include_template('add_posts/form_post_video.php', []));
+                                echo (include_template('add_posts/form_post_video.php', ['errors' => $errors, 'form_con_arr' => $form_con_arr]));
                                 break;
                             case 5:
-                                echo (include_template('add_posts/form_post_link.php', []));
+                                echo (include_template('add_posts/form_post_link.php', ['errors' => $errors, 'form_con_arr' => $form_con_arr]));
                                 break;
                         };
                         ?>
